@@ -8,8 +8,9 @@ class Seasons
       :south => [ :autumn, :winter, :spring, :summer ]
   }
 
-  def initialize(date)
+  def initialize(date, hemisphere)
     @date = date
+    @hemisphere = hemisphere
     @firstSeasonStart =  Date.new(@date.year, 3, 1)
     @secondSeasonStart =  Date.new(@date.year, 6, 1)
     @thirdSeasonStart =  Date.new(@date.year, 9, 1)
@@ -20,13 +21,13 @@ class Seasons
     print @date
 
     if (@firstSeasonStart..@secondSeasonStart -1).include?(@date)
-      @@season_names[:south][0].to_s
+      @@season_names[@hemisphere][0].to_s
     elsif (@secondSeasonStart..@thirdSeasonStart -1).include?(@date)
-      @@season_names[:south][1].to_s
+      @@season_names[@hemisphere][1].to_s
     elsif (@thirdSeasonStart..@fourthSeasonStart -1).include?(@date)
-      @@season_names[:south][2].to_s
+      @@season_names[@hemisphere][2].to_s
     else
-      @@season_names[:south][3].to_s
+      @@season_names[@hemisphere][3].to_s
     end
 
   end

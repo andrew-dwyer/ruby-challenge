@@ -21,7 +21,7 @@ class SeasonsTest < Test::Unit::TestCase
 
     startDate = Date.new(2001,1,1)
     while(startDate.yday != 365)
-      print Seasons.new(startDate).checkSeason    + "\n"
+      print Seasons.new(startDate, :south).checkSeason    + "\n"
       startDate = startDate.next_day
     end
     print a.checkSeason + "\n"
