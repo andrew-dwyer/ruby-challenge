@@ -9,6 +9,14 @@ class Seasons
       :south => [:autumn, :winter, :spring, :summer]
   }
 
+  # Initializes the Seasons class
+  #
+  # * *Args*    :
+  #   - +date+ -> the DateTime object to inspect
+  #   - +region+ -> the region to use.  :north or :south
+  # * *Raises* :
+  #   - +ArgumentError+
+  #
   def initialize(date, region)
     raise(ArgumentError, 'date param must be a Date or DateTime object') unless date.is_a? Date
     raise(ArgumentError, 'region parameter does not match a known region') unless @@season_names.has_key? region
@@ -22,6 +30,10 @@ class Seasons
     @fourthSeasonStart = Date.new(@date.year, 12, 1)
   end
 
+  # Calculates the season that the supplied date falls within
+  #
+  # * *Returns* the season that the date falls within
+  #
   def checkSeason
     # Check if the supplied date falls between the start and end of each season
     if (@firstSeasonStart..@secondSeasonStart -1).include?(@date)

@@ -39,15 +39,4 @@ class SeasonsTest < Test::Unit::TestCase
     assert_equal Seasons.new(DateTime.new(2012, 5, 31, 23, 59), :south).checkSeason, :autumn
   end
 
-  #def test_seasons
-  #
-  #
-  #  startDate = DateTime.new(2001,1,1)
-  #  while(startDate.year == 2001)
-  #    print Seasons.new(startDate, :south).checkSeason.to_s + ' ' + startDate.to_s + "\n"
-  #    startDate = startDate.next_day
-  #  end
-  #
-  #end
-
 end

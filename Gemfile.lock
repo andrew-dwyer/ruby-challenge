@@ -1,0 +1,11 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    rdoc (3.9.5)
+
+PLATFORMS
+  x86-mingw32
+
+DEPENDENCIES
+  bundler
+  rdoc
