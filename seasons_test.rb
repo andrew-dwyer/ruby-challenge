@@ -3,35 +3,51 @@ require './seasons.rb'
 
 class SeasonsTest < Test::Unit::TestCase
 
-  # Called before every test method runs. Can be used
-  # to set up fixture information.
-  def setup
-    # Do nothing
-  end
-
-  # Called after every test method runs. Can be used to tear
-  # down fixture information.
-
-  def teardown
-    # Do nothing
-  end
-
-  def test_seasons
-
-
-    startDate = Date.new(2001,1,1)
-    while(startDate.yday != 365)
-      print Seasons.new(startDate, :south).checkSeason    + "\n"
-      startDate = startDate.next_day
+  def test_unknown_region
+    assert_raise ArgumentError do
+      Seasons.new(DateTime.new, :unknown_region)
     end
-    print a.checkSeason + "\n"
+  end
+
+  def test_invalid_time
+    assert_raise ArgumentError do
+      Seasons.new('text', :north)
+    end
+  end
+
+  def test_valid_seasons
+    assert_equal Seasons.new(DateTime.new(2012, 2, 5), :south).checkSeason, :summer
+    assert_equal Seasons.new(DateTime.new(2012, 9, 6), :south).checkSeason, :spring
+    assert_equal Seasons.new(DateTime.new(2012, 7, 7), :south).checkSeason, :winter
+    assert_equal Seasons.new(DateTime.new(2012, 3, 8), :south).checkSeason, :autumn
+
+    assert_equal Seasons.new(DateTime.new(2012, 2, 5), :north).checkSeason, :winter
+    assert_equal Seasons.new(DateTime.new(2012, 9, 6), :north).checkSeason, :autumn
+    assert_equal Seasons.new(DateTime.new(2012, 7, 7), :north).checkSeason, :summer
+    assert_equal Seasons.new(DateTime.new(2012, 3, 8), :north).checkSeason, :spring
 
   end
 
-  # Fake test
-  #def test_fail
+  def test_edge_cases
+    assert_equal Seasons.new(DateTime.new(2012, 12, 1, 0, 0), :south).checkSeason, :summer
+    assert_equal Seasons.new(DateTime.new(2012, 2, 29, 23, 59), :south).checkSeason, :summer
+    assert_equal Seasons.new(DateTime.new(2012, 9, 1, 0, 0), :south).checkSeason, :spring
+    assert_equal Seasons.new(DateTime.new(2012, 11, 30, 23, 59), :south).checkSeason, :spring
+    assert_equal Seasons.new(DateTime.new(2012, 6, 1, 0, 0), :south).checkSeason, :winter
+    assert_equal Seasons.new(DateTime.new(2012, 8, 31, 23, 59), :south).checkSeason, :winter
+    assert_equal Seasons.new(DateTime.new(2012, 3, 1, 0, 0), :south).checkSeason, :autumn
+    assert_equal Seasons.new(DateTime.new(2012, 5, 31, 23, 59), :south).checkSeason, :autumn
+  end
+
+  #def test_seasons
   #
-  #  # To change this template use File | Settings | File Templates.
-  #  fail('Not implemented')
+  #
+  #  startDate = DateTime.new(2001,1,1)
+  #  while(startDate.year == 2001)
+  #    print Seasons.new(startDate, :south).checkSeason.to_s + ' ' + startDate.to_s + "\n"
+  #    startDate = startDate.next_day
+  #  end
+  #
   #end
+
 end
