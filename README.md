@@ -1,6 +1,6 @@
-# Seasons::Challenge
+# Seasons Challenge
 
-TODO: Write a gem description
+Ruby class to take a date and determine it's season
 
 ## Installation
 
@@ -18,12 +18,9 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+    Seasons.new(DateTime.new(2012, 2, 5), :south).checkSeason
 
-## Contributing
+## Running tests
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+    $ ruby test/seasons_test.rb
+    
