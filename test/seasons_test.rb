@@ -1,5 +1,5 @@
 require 'test/unit'
-require './seasons.rb'
+require './lib/seasons/seasons.rb'
 
 class SeasonsTest < Test::Unit::TestCase
 
